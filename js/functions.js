@@ -1,29 +1,27 @@
 // Задание 1
 function formatmessage(text, maxLength) {
-  let result;
-  // eslint-disable-next-line no-undef
-  if (text.length >= maxLength) {
-    // eslint-disable-next-line no-undef
-    result = text.slice(0, maxLength);
-  } else{
-    // eslint-disable-next-line no-undef
-    result = text.slice(0, text.length);
-  }
-  return result;
+  return (maxLength >= text.length);
 }
 formatmessage('домашнее задание', 20);
 
 // Задание 2
-function isPalindrome (string) {
-  const normalized = string.toLowerCase().match(/[a-z]/gi).reverse();
-  return normalized.join('') === normalized.reverse().join('');
+
+function checkPalindrome (string) {
+  const phrase = string.replaceAll(' ', '').toLowerCase();
+  let reversePhrase = '';
+  for (let i = phrase.lenght - 1; i >= 0; i--){
+    reversePhrase += phrase[i];
+  }
+  return (reversePhrase === phrase);
 }
-// eslint-disable-next-line no-console
-console.log(isPalindrome('топот'));
 
 // Дополнительное задание
-function foundNumber (string) {
-// eslint-disable-next-line no-console
-  return console.log(Number.parseInt(string, 10));
+// eslint-disable-next-line no-unused-vars
+function extractNumber(param) {
+  const str = param.toString();
+  let num = '';
+  for (let i = 0; i < str.length; i++) {
+    num += (Number.isNaN(parseInt(str[i], 10))) ? '' : str[i];
+  }
+  return parseInt(num, 10);
 }
-foundNumber('2023 год');
