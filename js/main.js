@@ -55,7 +55,7 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 // Найдем уникальный индификатор
-function createRandomIdFromRangeGenerator (min, max) {
+const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
   return function () {
@@ -70,33 +70,34 @@ function createRandomIdFromRangeGenerator (min, max) {
     previousValues.push(currentValue);
     return currentValue;
   };
-}
-const getRandomArrayElemrnt = (min, max) => getRandomInteger(min, max);
+};
+const getRandomArrayElement = (min, max) => getRandomInteger(min, max);
+const generateCommentId = createRandomIdFromRangeGenerator(1, PHOTOS_COUNT * MAX_COMMENTS_COUNT);
+const generatePhotoId = createRandomIdFromRangeGenerator(1, PHOTOS_COUNT);
 // Создаем Комментарий
 const createComment = () => {
-  const generatePhotoId = createRandomIdFromRangeGenerator(1, PHOTOS_COUNT);
-  const photoId = generatePhotoId();
+  const CommentId = generateCommentId();
   const randomNameIndex = createRandomIdFromRangeGenerator (1, NAMES.length - 1);
   const randomCommentIndex = getRandomInteger (1, COMMENTS.length - 1);
   return {
-    id: photoId,
-    avatar: `img/avatar-${getRandomArrayElemrnt(AVATAR_MIN, AVATAR_MAX)}.svg`,
+    id: CommentId,
+    avatar: `img/avatar-${getRandomArrayElement(AVATAR_MIN, AVATAR_MAX)}.svg`,
     name: NAMES[randomNameIndex],
     comment: COMMENTS [randomCommentIndex],
   };
 };
 // Создаем Фото
-function createPhoto() {
+const createPhoto = () => {
   const randomDescriptionIndex = getRandomInteger(1, DESCRIPTIONS.length - 1);
+  const photoId = generatePhotoId();
   return {
-    // eslint-disable-next-line no-undef
     id: photoId,
-    comment: Array.from({length: getRandomInteger(0, MAX_COMMENTS_COUNT)}, createComment),
-    url: `photos/${getRandomArrayElemrnt(1, PHOTOS_COUNT)}.jpg`,
+    comments: Array.from({length: getRandomInteger(0, MAX_COMMENTS_COUNT)}, createComment),
+    url: `photos/${getRandomArrayElement(1, PHOTOS_COUNT)}.jpg`,
     description: DESCRIPTIONS[randomDescriptionIndex],
     likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   };
-}
+};
 
 // Генерация 25 случайных объекта
 const photos = Array.from({length: SIMILAR_PHOTOS}, createPhoto);
