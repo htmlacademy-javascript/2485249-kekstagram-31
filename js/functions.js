@@ -14,6 +14,7 @@ function checkPalindrome (string) {
   }
   return (reversePhrase === phrase);
 }
+checkPalindrome();
 
 // Дополнительное задание
 // eslint-disable-next-line no-unused-vars
