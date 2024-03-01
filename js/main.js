@@ -98,7 +98,6 @@ const createPhoto = () => {
     likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   };
 };
-
 // Генерация 25 случайных объекта
 const photos = Array.from({length: SIMILAR_PHOTOS}, createPhoto);
 // eslint-disable-next-line no-console
