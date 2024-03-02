@@ -1,5 +1,5 @@
 import {createRandomIdFromRangeGenerator, getRandomArrayElement, getRandomInteger} from './util.js';
-import {NAMES, COMMENTS, DESCRIPTIONS} from './util.js';
+import {NAMES, COMMENTS, DESCRIPTIONS} from './data.js';
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const AVATAR_MIN = 1;
